@@ -15,10 +15,16 @@ export const App = () => {
   };
 
   const onSubmitHandler = async (e) => {
+    e.preventDefault();
     const title = e.target.title.value;
     const body = e.target.body.value;
-    await axios.post(postUrl, { title, body });
-    fetchData();
+    try {
+      const response = await axios.post(postUrl, { title, body });
+      console.log(response); // 응답 코드 확인
+      fetchData();
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -29,11 +35,18 @@ export const App = () => {
         <input name="body" />
         <input type="submit" value="추가" />
       </form>
-      {postList?.map((post, index) => (
-        <div key={post.id}>
-          {index === postList.length - 1 && <div>{post.body}</div>}
-        </div>
-      ))}
+      {postList ? (
+        <ul>
+          {postList.map((post) => (
+            <li key={post.id}>
+              <h3>{post.title}</h3>
+              <p>{post.body}</p>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p>Loading...</p>
+      )}
     </div>
   );
 };
