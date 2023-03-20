@@ -36,14 +36,11 @@ export const App = () => {
         <input type="submit" value="추가" />
       </form>
       {postList ? (
-        <ul>
-          {postList.map((post) => (
-            <li key={post.id}>
-              <h3>{post.title}</h3>
-              <p>{post.body}</p>
-            </li>
-          ))}
-        </ul>
+        <div>
+          <h2>Last Post:</h2>
+          <h3>{postList[postList.length - 1].title}</h3>
+          <p>{postList[postList.length - 1].body}</p>
+        </div>
       ) : (
         <p>Loading...</p>
       )}
