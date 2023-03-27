@@ -31,6 +31,7 @@ const postAtom = atom({
 const posts = selector({
   key: "Posts",
   get: async () => {
+    console.log("lsdfkjlasdf");
     return getApi();
   },
   set: ({ set }, newPostData) => {
@@ -46,8 +47,8 @@ const postApi = async (title, body) => {
       "https://jsonplaceholder.typicode.com/posts",
       { title, body }
     );
-    console.log(response.data);
-    return response.data || [];
+    console.log(response);
+    return response || [];
   } catch (error) {
     console.log("Error!", error.response.status);
     return [];
