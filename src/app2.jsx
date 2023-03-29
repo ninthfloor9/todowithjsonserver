@@ -1,6 +1,6 @@
 import axios from "axios";
 import React from "react";
-import { useRecoilState } from "recoil";
+import { useRecoilRefresher_UNSTABLE, useRecoilState } from "recoil";
 import { atom, selector } from "recoil";
 
 // 1. get.axios 데이터를 출력한다
@@ -57,6 +57,7 @@ const postApi = async (title, body) => {
 
 export const App2 = () => {
   const [data, setData] = useRecoilState(posts);
+  const refresh = useRecoilRefresher_UNSTABLE(posts);
 
   //3-1 input -> post.axios 는 local state 다.(굳이 recoil 쓸필요 없음)
   //3-2 input 값을 post.axios 로 post 한다.
@@ -72,6 +73,7 @@ export const App2 = () => {
     } catch (error) {
       console.error(error);
     }
+    refresh();
   };
 
   return (
