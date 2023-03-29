@@ -10,7 +10,8 @@ export const postAtom = atom({
 //4. fetch selector(get)
 
 export const fetchPosts = selector({
+  key: "fetchPosts",
   get: async () => {
-    getPosts();
+    return getPosts();
   },
 });

@@ -1,4 +1,4 @@
-const apiUrl = "https://jsonplaceholder.typicode.com/users/1/posts";
+const apiUrl = "https://jsonplaceholder.typicode.com/posts";
 
 //1. get posts fetch
 
