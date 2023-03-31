@@ -19,8 +19,8 @@ export const App3 = () => {
     <div>
       {data?.map((data) => (
         <div key={data.id}>
-          <h4 className="title">{data.title}</h4>
-          <p className="body">{data.body}</p>
+          <h4 className="title">{data.id}</h4>
+          <p className="body">{data.title}</p>
         </div>
       ))}
     </div>
