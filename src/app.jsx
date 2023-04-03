@@ -14,8 +14,10 @@ import { postPosts } from "./fetch";
 const OnSubmitHandler = async (e) => {
   e.preventDefault();
   const title = e.target.title.value;
+  const body = e.target.body.value;
+  const author = e.target.author.value;
   try {
-    const response = await postPosts(title);
+    const response = await postPosts(title, body, author);
     console.log(response);
   } catch (error) {
     console.log(error);
@@ -37,7 +39,9 @@ export const App3 = () => {
       ))}
       {/* input form */}
       <form onSubmit={OnSubmitHandler}>
-        <input name="todo" />
+        <input name="title" />
+        <input name="body" />
+        <input name="author" />
         <input type="submit" value="Add" />
       </form>
     </div>

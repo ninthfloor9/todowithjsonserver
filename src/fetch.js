@@ -17,9 +17,9 @@ export const getPosts = async () => {
 
 //2. post posts fetch
 
-export const postPosts = async (title) => {
+export const postPosts = async (title, body, author) => {
   try {
-    const response = await axios.post(urls, { title });
+    const response = await axios.post(urls, { title, body, author });
     console.log(response);
     return response.data || [];
   } catch (error) {
