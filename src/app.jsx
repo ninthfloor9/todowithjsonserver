@@ -1,49 +1,45 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React from "react";
+import { useRecoilValue } from "recoil";
+import { fetchPosts } from "./recoil";
+import { postPosts } from "./fetch";
 
-const postUrl = "https://jsonplaceholder.typicode.com/posts";
-export const App = () => {
-  const [postList, setPostList] = useState(null);
+/* 
+4. render getPosts
+5. input form
+6. input rendering
+7. Render posts fetch Response(title, body)
+8. post input posts 
+9. 4. error handling */
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+const OnSubmitHandler = async (e) => {
+  e.preventDefault();
+  const title = e.target.title.value;
+  try {
+    const response = await postPosts(title);
+    console.log(response);
+  } catch (error) {
+    console.log(error);
+  }
+};
 
-  const fetchData = async () => {
-    const response = await axios.get(postUrl);
-    setPostList(response.data);
-  };
-
-  const onSubmitHandler = async (e) => {
-    e.preventDefault();
-    const title = e.target.title.value;
-    const body = e.target.body.value;
-    try {
-      const response = await axios.post(postUrl, { title, body });
-      console.log(response); // 응답 코드 확인
-      fetchData();
-    } catch (error) {
-      console.error(error);
-    }
-  };
+// Render
+export const App3 = () => {
+  const data = useRecoilValue(fetchPosts);
 
   return (
-    <div className="App">
-      <h1>Todo List</h1>
-      <form onSubmit={onSubmitHandler}>
-        <input name="title" />
-        <input name="body" />
-        <input type="submit" value="추가" />
-      </form>
-      {postList ? (
-        <div>
-          <h2>Last Post:</h2>
-          <h3>{postList[postList.length - 1].title}</h3>
-          <p>{postList[postList.length - 1].body}</p>
+    <div>
+      {/* 4. render getPosts */}
+      {data?.map((data) => (
+        <div key={data._id}>
+          <h4 className="title">{data.title}</h4>
+          <p className="body">{data.body}</p>
         </div>
-      ) : (
-        <p>Loading...</p>
-      )}
+      ))}
+      {/* input form */}
+      <form onSubmit={OnSubmitHandler}>
+        <input name="todo" />
+        <input type="submit" value="Add" />
+      </form>
     </div>
   );
 };
