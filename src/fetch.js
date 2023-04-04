@@ -1,4 +1,5 @@
-const urls = "http://localhost:8080/api/blogs"; // GET, POST 둘다 가능
+const getUrls = "http://localhost:8080/api/blogs"; // GET
+const postUrls = "http://localhost:8080/api/blogs/add"; // POST
 
 //1. get posts fetch
 
@@ -6,7 +7,7 @@ import axios from "axios";
 
 export const getPosts = async () => {
   try {
-    const response = await axios.get(urls);
+    const response = await axios.get(getUrls);
     console.log(response.data);
     return response.data || [];
   } catch (error) {
@@ -19,7 +20,7 @@ export const getPosts = async () => {
 
 export const postPosts = async (title, body, author) => {
   try {
-    const response = await axios.post(urls, { title, body, author });
+    const response = await axios.post(postUrls, { title, body, author });
     console.log(response);
     return response.data || [];
   } catch (error) {

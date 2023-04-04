@@ -35,6 +35,7 @@ export const App3 = () => {
         <div key={data._id}>
           <h4 className="title">{data.title}</h4>
           <p className="body">{data.body}</p>
+          <p className="author">{data.author}</p>
         </div>
       ))}
       {/* input form */}
