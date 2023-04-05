@@ -3,7 +3,7 @@ import { getPosts } from "./fetch";
 
 // 3. create postAtom
 export const postAtom = atom({
-  key: "PostAtome",
+  key: "PostAtom",
   default: [],
 });
 

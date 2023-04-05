@@ -1,5 +1,5 @@
 import React from "react";
-import { useRecoilValue } from "recoil";
+import { useRecoilRefresher_UNSTABLE, useRecoilValue } from "recoil";
 import { fetchPosts } from "./recoil";
 import { postPosts } from "./fetch";
 
@@ -19,6 +19,7 @@ const OnSubmitHandler = async (e) => {
 // Render
 export const App3 = () => {
   const data = useRecoilValue(fetchPosts);
+  const refresh = useRecoilRefresher_UNSTABLE(fetchPosts);
 
   return (
     <div>
@@ -36,6 +37,8 @@ export const App3 = () => {
         <input name="body" />
         <input name="author" />
         <input type="submit" value="Add" />
+        {/* this is a button with useRecoilRefresher_UNSTABLE */}
+        <button onClick={() => refresh()}>refresh</button> 
       </form>
     </div>
   );
