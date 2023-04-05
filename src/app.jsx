@@ -3,14 +3,6 @@ import { useRecoilValue } from "recoil";
 import { fetchPosts } from "./recoil";
 import { postPosts } from "./fetch";
 
-/* 
-4. render getPosts
-5. input form
-6. input rendering
-7. Render posts fetch Response(title, body)
-8. post input posts 
-9. 4. error handling */
-
 const OnSubmitHandler = async (e) => {
   e.preventDefault();
   const title = e.target.title.value;
@@ -38,7 +30,7 @@ export const App3 = () => {
           <p className="author">{data.author}</p>
         </div>
       ))}
-      {/* input form */}
+      {/* 5. input form */}
       <form onSubmit={OnSubmitHandler}>
         <input name="title" />
         <input name="body" />
