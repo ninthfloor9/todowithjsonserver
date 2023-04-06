@@ -38,7 +38,7 @@ export const App3 = () => {
         <input name="author" />
         <input type="submit" value="Add" />
         {/* this is a button with useRecoilRefresher_UNSTABLE */}
-        <button onClick={() => refresh()}>refresh</button> 
+        <button onClick={() => refresh()}>refresh</button>
       </form>
     </div>
   );
