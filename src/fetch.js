@@ -4,6 +4,7 @@ const postUrls = "http://localhost:8080/api/blogs/add"; // POST
 //1. get posts fetch
 
 import axios from "axios";
+import { useQuery } from "react-query";
 
 export const getPosts = async () => {
   try {
@@ -14,6 +15,13 @@ export const getPosts = async () => {
     console.log("Error가 났어요", error.response.status);
     return [];
   }
+};
+
+export const FetchPosts = () => {
+  const postQuery = useQuery(() => getPosts());
+
+  const data2 = postQuery.data;
+  console.log(data2);
 };
 
 //2. post posts fetch
